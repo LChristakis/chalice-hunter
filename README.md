@@ -1,0 +1,3 @@
+Chalice Seeker is a flask application designed to make perusing the Bloodborne Chalice spreadsheet simple . The spreadsheet is located at https://docs.google.com/spreadsheets/d/18TVy5cDk6sNX0lc2dNQM2Q-SLv0_9QecQrtKR0sRb6Q/ and is imported into flask as a tab-separated document. 
+
+The main page served by flask is a dynamic page that uses AJAX requests to populate a table of dungeons. The AJAX requests are handled by a GET to /query
