@@ -1,0 +1,20 @@
+<!doctype html>
+<head>
+<title>Chalice Seeker</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript"> 
+	$SCRIPT_ROOT = {{request.script_root|tojson|safe}};
+</script>
+<style>
+body {
+	background-color: linen;
+}
+table, th, td {
+	border: 1px solid black;
+}
+div {
+	padding: 5px;
+}
+</style>
+</head>
+{% block body %}{% endblock %}

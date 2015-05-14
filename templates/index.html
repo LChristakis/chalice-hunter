@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>Chalice Seeker</h1>
+Chalice:<input type="text" class="chalice-search"></input>
+Weapon:<input type="text" class="weapon-search"></input>
+Material:<input type="text" class="material-search"></input>
+</br>
+<input type="button" value="Reset"></input>
+	{% for row in data %}
+		<div>
+			<table>
+				<tr>
+					<td class="chalice">{{row.1}}</td>
+					<td class="rites">{{row.2}}</td>
+					<td class="glyph">{{row.3}}</td>						
+				</tr>				
+			</table>
+			<table>
+				<tr><td class="comments">{{row.12}}</td></tr>
+			</table>
+			
+			<table>
+				<tr>
+					<td></td>
+					<td>Weapons</td>
+					<td>Materials</td>
+				</tr>
+				<tr>
+					<td>Level 1</td>
+					<td class="weapon">{{row.4}}</td>
+					<td class="material">{{row.8}}</td>
+				</tr>
+				<tr>
+					<td>Level 2</td>
+					<td class="weapon">{{row.5}}</td>
+					<td class="material">{{row.9}}</td>
+				</tr>
+				<tr>
+					<td>Level 3</td>
+					<td class="weapon">{{row.6}}</td>
+					<td class="material">{{row.10}}</td>
+				</tr>
+				<tr>
+					<td>Level 4</td>
+					<td class="weapon">{{row.7}}</td>
+					<td class="material">{{row.11}}</td>
+				</tr>				
+			</table>
+		</div>	
+	{% endfor %}
+{% endblock %}
