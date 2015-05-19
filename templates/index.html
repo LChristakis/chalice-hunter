@@ -7,19 +7,19 @@ Material:<input type="text" class="material-search"></input>
 </br>
 <input type="button" value="Reset"></input>
 	{% for row in data %}
-		<div>
+		<div class="chalice-entry">
 			<table>
 				<tr>
-					<td class="chalice">{{row.1}}</td>
-					<td class="rites">{{row.2}}</td>
-					<td class="glyph">{{row.3}}</td>						
+					<td class="chalice-cell">{{row.1}}</td>
+					<td class="rites-cell">{{row.2}}</td>
+					<td class="glyph-cell">{{row.3}}</td>						
 				</tr>				
 			</table>
 			<table>
-				<tr><td class="comments">{{row.12}}</td></tr>
+				<tr><td class="comments-cell">{{row.12}}</td></tr>
 			</table>
 			
-			<table>
+			<table class="loot-table">
 				<tr>
 					<td></td>
 					<td>Weapons</td>
@@ -27,25 +27,82 @@ Material:<input type="text" class="material-search"></input>
 				</tr>
 				<tr>
 					<td>Level 1</td>
-					<td class="weapon">{{row.4}}</td>
-					<td class="material">{{row.8}}</td>
+					<td class="weapon-cell">{{row.4}}</td>
+					<td class="material-cell">{{row.8}}</td>
 				</tr>
 				<tr>
 					<td>Level 2</td>
-					<td class="weapon">{{row.5}}</td>
-					<td class="material">{{row.9}}</td>
+					<td class="weapon-cell">{{row.5}}</td>
+					<td class="material-cell">{{row.9}}</td>
 				</tr>
 				<tr>
 					<td>Level 3</td>
-					<td class="weapon">{{row.6}}</td>
-					<td class="material">{{row.10}}</td>
+					<td class="weapon-cell">{{row.6}}</td>
+					<td class="material-cell">{{row.10}}</td>
 				</tr>
 				<tr>
 					<td>Level 4</td>
-					<td class="weapon">{{row.7}}</td>
-					<td class="material">{{row.11}}</td>
+					<td class="weapon-cell">{{row.7}}</td>
+					<td class="material-cell">{{row.11}}</td>
 				</tr>				
 			</table>
 		</div>	
 	{% endfor %}
+	<p>Hello world</p>
+
+<script>
+$('.chalice-search').on('input', function(){ 
+	chalice_search_value = $(this).val().toLowerCase();
+	console.log(chalice_search_value);
+
+	$('.chalice-cell').each(function (){
+		if ($(this).text().toLowerCase().indexOf(chalice_search_value) < 0){
+			$(this).parents('.chalice-entry').css("display","none");
+		} else {
+			$(this).parents('.chalice-entry').css("display","inline");
+		}
+	});	
+});
+
+$('.weapon-search').on('input', function(){
+	weapon_search_value = $(this).val().toLowerCase();
+	console.log(weapon_search_value);
+
+	$('.loot-table').each(function(){
+		found_weapon=false;
+		$(this).find('.weapon-cell').each(function(){
+			if ($(this).text().toLowerCase().indexOf(weapon_search_value) >= 0){	
+				found_weapon=true;
+			}
+		});
+		if(found_weapon==true){
+			$(this).parents('.chalice-entry').css("display","inline");
+		}else{
+			$(this).parents('.chalice-entry').css("display","none");
+		}
+	});
+
+});
+
+$('.material-search').on('input', function(){
+	material_search_value = $(this).val().toLowerCase();
+	console.log(material_search_value);
+
+	$('.loot-table').each(function(){
+		found_material=false;
+		$(this).find('.material-cell').each(function(){
+			if ($(this).text().toLowerCase().indexOf(material_search_value) >= 0){	
+				found_material=true;
+			}
+		});
+		if(found_material==true){
+			$(this).parents('.chalice-entry').css("display","inline");
+		}else{
+			$(this).parents('.chalice-entry').css("display","none");
+		}
+	});
+
+});
+</script>
+
 {% endblock %}
