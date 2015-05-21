@@ -2,7 +2,7 @@
 {% block body %}
 
 	<header class="container">
-		<h1 class="m--1">Chalice Seeker</h1>
+		<h1 class="m--1">Chalice Hunter</h1>
 	</header>
 	<div class="g--10 m--1 container container--wrap--s">
 		<div class="card g--4 g-m--12 g-s--12 g-t--12 nudge--right no-nudge--s no-nudge--t">
@@ -77,7 +77,12 @@ $('.reset').click(function(){
 	$('.chalice-entry').show();
 });
 
+//This function gathers the parameters the user is searching for
+//and goes through every chalice-entry div. If a div matches the
+//parameters, it shows it. Otherwise the div is hidden.
 function search(){
+
+	//Gather the search values from each text input
 	chalice_search_value = $('.chalice-search').val().toLowerCase();
 	weapon_search_value = $('.weapon-search').val().toLowerCase();
 	material_search_value = $('.material-search').val().toLowerCase();
@@ -85,32 +90,45 @@ function search(){
 	//console.log("weapon-search-value:"+weapon_search_value);
 	//console.log("material-search-value:"+material_search_value);
 
+	//Perform the following actions on each chalice-entry div
 	$('.chalice-entry').each(function(){
+		
+		//Assume the desired elements will not be found in the div
 		found_chalice=false;
 		found_material=false;
 		found_weapon=false;
+
+		//Compare the chalice cell to the chalice search value
 		$(this).find('.chalice-cell').each(function(){
 			if ($(this).text().toLowerCase().indexOf(chalice_search_value) >= 0){
+				//If there's a match, note it
 				found_chalice=true;
 			}
-		});
+		});	
+		//Compare each weapon cell to the weapon search value
 		$(this).find('.weapon-cell').each(function(){
-			if ($(this).text().toLowerCase().indexOf(weapon_search_value) >= 0){	
+			if ($(this).text().toLowerCase().indexOf(weapon_search_value) >= 0){
+				//If there's a match, note it	
 				found_weapon=true;
 			}
 		});
+
+		//Compare each material cell to the material search value
 		$(this).find('.material-cell').each(function(){
-			if ($(this).text().toLowerCase().indexOf(material_search_value) >= 0){	
+			if ($(this).text().toLowerCase().indexOf(material_search_value) >= 0){
+				//If there's a match, note it
 				found_material=true;
 			}
 		});
+		//If a match was found for each of the search values,
+		//show this chalice-entry
 		if(found_chalice&&found_weapon&&found_material){
 			$(this).show();
 		}else{
+			//If not, hide the chalice-entry
 			$(this).hide();
 		}
 	});
-
 }
 </script>
 

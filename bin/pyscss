@@ -1,4 +1,4 @@
-#!/home/luke/chalice-seeker/bin/python3
+#!/home/luke/chalice-hunter/bin/python3.4
 # EASY-INSTALL-ENTRY-SCRIPT: 'pyScss==1.3.4','console_scripts','pyscss'
 __requires__ = 'pyScss==1.3.4'
 import sys

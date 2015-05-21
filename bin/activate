@@ -39,15 +39,12 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/luke/chalice-seeker"
+VIRTUAL_ENV="/home/luke/chalice-hunter"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
 PATH="$VIRTUAL_ENV/bin:$PATH"
 export PATH
-
-GOOGLE_APPLICATION_CREDENTIALS="/home/luke/chalice-seeker/chalice-seeker-54d9b74b7154.json"
-export GOOGLE_APPLICATION_CREDENTIALS
 
 # unset PYTHONHOME if set
 # this will fail if PYTHONHOME is set to the empty string (which is bad anyway)

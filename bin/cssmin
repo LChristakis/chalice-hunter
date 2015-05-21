@@ -1,4 +1,4 @@
-#!/home/luke/chalice-seeker/bin/python3
+#!/home/luke/chalice-hunter/bin/python3.4
 # EASY-INSTALL-ENTRY-SCRIPT: 'cssmin==0.2.0','console_scripts','cssmin'
 __requires__ = 'cssmin==0.2.0'
 import sys
