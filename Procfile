@@ -1,0 +1,1 @@
+web: gunicorn chalice-hunter:app --log-file=-
