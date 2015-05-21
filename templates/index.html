@@ -59,71 +59,15 @@
 	
 <script>
 $('.chalice-search').on('input', function(){ 
-	chalice_search_value = $(this).val().toLowerCase();
-	console.log(chalice_search_value);
-
-	$('.chalice-cell').each(function (){
-		if ($(this).text().toLowerCase().indexOf(chalice_search_value) < 0){
-			$(this).parents('.chalice-entry').hide();
-		} else {
-			$(this).parents('.chalice-entry').show();
-		}
-	});	
+	search();
 });
 
 $('.weapon-search').on('input', function(){
-	weapon_search_value = $(this).val().toLowerCase();
-	console.log(weapon_search_value);
-
-	$('.loot-table').each(function(){
-		found_weapon=false;
-		$(this).find('.weapon-cell').each(function(){
-			if ($(this).text().toLowerCase().indexOf(weapon_search_value) >= 0){	
-				found_weapon=true;
-			}
-		});
-		if(found_weapon==true){
-			$(this).parents('.chalice-entry').show();
-		}else{
-			$(this).parents('.chalice-entry').hide();
-		}
-	});
-
-	$('.comments-cell').each(function(){
-		if($(this).text().toLowerCase().indexOf(weapon_search_value) < 0){
-			$(this).parents('.chalice-entry').hide();
-		}else{
-			$(this).parents('.chalice-entry').show();
-		}
-	});
-
+	search();
 });
 
 $('.material-search').on('input', function(){
-	material_search_value = $(this).val().toLowerCase();
-	console.log(material_search_value);
-
-	$('.loot-table').each(function(){
-		found_material=false;
-		$(this).find('.material-cell').each(function(){
-			if ($(this).text().toLowerCase().indexOf(material_search_value) >= 0){	
-				found_material=true;
-			}
-		});
-		if(found_material==true){
-			$(this).parents('.chalice-entry').show();
-		}else{
-			$(this).parents('.chalice-entry').hide();
-		}
-	});
-	$('.comments-cell').each(function(){
-		if($(this).text().toLowerCase().indexOf(material_search_value) < 0){
-			$(this).parents('.chalice-entry').hide();
-		}else{
-			$(this).parents('.chalice-entry').show();
-		}
-	});
-
+	search();
 });
 
 $('.reset').click(function(){
@@ -132,6 +76,42 @@ $('.reset').click(function(){
 	$('.material-search').val('');
 	$('.chalice-entry').show();
 });
+
+function search(){
+	chalice_search_value = $('.chalice-search').val().toLowerCase();
+	weapon_search_value = $('.weapon-search').val().toLowerCase();
+	material_search_value = $('.material-search').val().toLowerCase();
+	//console.log("chalice-search-value:"+chalice_search_value);
+	//console.log("weapon-search-value:"+weapon_search_value);
+	//console.log("material-search-value:"+material_search_value);
+
+	$('.chalice-entry').each(function(){
+		found_chalice=false;
+		found_material=false;
+		found_weapon=false;
+		$(this).find('.chalice-cell').each(function(){
+			if ($(this).text().toLowerCase().indexOf(chalice_search_value) >= 0){
+				found_chalice=true;
+			}
+		});
+		$(this).find('.weapon-cell').each(function(){
+			if ($(this).text().toLowerCase().indexOf(weapon_search_value) >= 0){	
+				found_weapon=true;
+			}
+		});
+		$(this).find('.material-cell').each(function(){
+			if ($(this).text().toLowerCase().indexOf(material_search_value) >= 0){	
+				found_material=true;
+			}
+		});
+		if(found_chalice&&found_weapon&&found_material){
+			$(this).show();
+		}else{
+			$(this).hide();
+		}
+	});
+
+}
 </script>
 
 {% endblock %}
