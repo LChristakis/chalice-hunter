@@ -125,6 +125,13 @@ $('.material-search').on('input', function(){
 	});
 
 });
+
+$('.reset').click(function(){
+	$('.chalice-search').val('');
+	$('.weapon-search').val('');
+	$('.material-search').val('');
+	$('.chalice-entry').show();
+});
 </script>
 
 {% endblock %}
