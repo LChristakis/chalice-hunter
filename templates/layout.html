@@ -5,16 +5,8 @@
 <script type="text/javascript"> 
 	$SCRIPT_ROOT = {{request.script_root|tojson|safe}};
 </script>
-<style>
-body {
-	background-color: linen;
-}
-table, th, td {
-	border: 1px solid black;
-}
-div {
-	padding: 5px;
-}
-</style>
+{% assets "css_all" %}
+<link rel="stylesheet" type="text/css" href="{{ASSET_URL}}">
+{% endassets %}
 </head>
 {% block body %}{% endblock %}

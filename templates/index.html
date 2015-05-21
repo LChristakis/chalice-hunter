@@ -1,55 +1,62 @@
 {% extends "layout.html" %}
 {% block body %}
-<h1>Chalice Seeker</h1>
-Chalice:<input type="text" class="chalice-search"></input>
-Weapon:<input type="text" class="weapon-search"></input>
-Material:<input type="text" class="material-search"></input>
-</br>
-<input type="button" value="Reset"></input>
+
+	<header class="container">
+		<h1 class="m--1">Chalice Seeker</h1>
+	</header>
+	<div class="g--10 m--1 container container--wrap--s">
+		<div class="card g--4 g-m--12 g-s--12 g-t--12 nudge--right no-nudge--s no-nudge--t">
+			<input type="text" required placeholder="Chalice" class="search chalice-search"></input>
+		</div>
+		<div class="card g--4 g-m--12 g-s--12 g-t--12 nudge--right no-nudge--s no-nudge--t">
+			<input type="text" required placeholder="Weapon" class="search weapon-search">
+		</div>
+		<div class="card g--4 g-m--12 g-s--12 g-t--12">
+			<input type="text" required placeholder="Material" class="search material-search">
+		</div>
+	</div>
+	<div class="g--2 g-m--2 g-s--12 g-t--12 m--5 m-m--5">
+		<button class="search reset btn--raised btn--primary">RESET</button>
+	</div>
 	{% for row in data %}
-		<div class="chalice-entry">
-			<table>
+		<div class="chalice-entry tile g--12">
+			<table class="g--12">
 				<tr>
-					<td class="chalice-cell">{{row.1}}</td>
-					<td class="rites-cell">{{row.2}}</td>
-					<td class="glyph-cell">{{row.3}}</td>						
+					<td><h5>Chalice</h5></td>
+					<td><h5>Rites<h5></td>
+					<td><h5>Glyph</h5></td>
+				</tr>
+				<tr>
+					<td class="chalice-cell g--4">{{row.1}}</td>
+					<td class="rites-cell g--4">{{row.2}}</td>
+					<td class="glyph-cell g--4">{{row.3}}</td>						
 				</tr>				
 			</table>
-			<table>
-				<tr><td class="comments-cell">{{row.12}}</td></tr>
+			<table class="g--12">
+				<tr>
+					<td class="g--2"><h5>Comments:</h5></td>
+					<td class="comments-cell g--10">{{row.12}}</td>
+				</tr>
 			</table>
 			
-			<table class="loot-table">
+			<table class="loot-table g--12">
 				<tr>
-					<td></td>
-					<td>Weapons</td>
-					<td>Materials</td>
+					<td class="g--2"></td>
+					<td class="g--5"><h5>Weapons</h5></td>
+					<td class="g--5"><h5>Materials</h5></td>
 				</tr>
+				{% for i in range(0,4) %}
 				<tr>
-					<td>Level 1</td>
-					<td class="weapon-cell">{{row.4}}</td>
-					<td class="material-cell">{{row.8}}</td>
+					<td><h5>Layer {{i+1}}</h5></td>
+					<td class="weapon-cell">{{row[i+4]}}</td>
+					<td class="material-cell">{{row[i+8]}}</td>
 				</tr>
-				<tr>
-					<td>Level 2</td>
-					<td class="weapon-cell">{{row.5}}</td>
-					<td class="material-cell">{{row.9}}</td>
-				</tr>
-				<tr>
-					<td>Level 3</td>
-					<td class="weapon-cell">{{row.6}}</td>
-					<td class="material-cell">{{row.10}}</td>
-				</tr>
-				<tr>
-					<td>Level 4</td>
-					<td class="weapon-cell">{{row.7}}</td>
-					<td class="material-cell">{{row.11}}</td>
-				</tr>				
+				{% endfor %}	
 			</table>
 		</div>	
 	{% endfor %}
 	<p>Hello world</p>
-
+	
 <script>
 $('.chalice-search').on('input', function(){ 
 	chalice_search_value = $(this).val().toLowerCase();
@@ -57,9 +64,9 @@ $('.chalice-search').on('input', function(){
 
 	$('.chalice-cell').each(function (){
 		if ($(this).text().toLowerCase().indexOf(chalice_search_value) < 0){
-			$(this).parents('.chalice-entry').css("display","none");
+			$(this).parents('.chalice-entry').hide();
 		} else {
-			$(this).parents('.chalice-entry').css("display","inline");
+			$(this).parents('.chalice-entry').show();
 		}
 	});	
 });
@@ -76,9 +83,17 @@ $('.weapon-search').on('input', function(){
 			}
 		});
 		if(found_weapon==true){
-			$(this).parents('.chalice-entry').css("display","inline");
+			$(this).parents('.chalice-entry').show();
 		}else{
-			$(this).parents('.chalice-entry').css("display","none");
+			$(this).parents('.chalice-entry').hide();
+		}
+	});
+
+	$('.comments-cell').each(function(){
+		if($(this).text().toLowerCase().indexOf(weapon_search_value) < 0){
+			$(this).parents('.chalice-entry').hide();
+		}else{
+			$(this).parents('.chalice-entry').show();
 		}
 	});
 
@@ -96,9 +111,16 @@ $('.material-search').on('input', function(){
 			}
 		});
 		if(found_material==true){
-			$(this).parents('.chalice-entry').css("display","inline");
+			$(this).parents('.chalice-entry').show();
 		}else{
-			$(this).parents('.chalice-entry').css("display","none");
+			$(this).parents('.chalice-entry').hide();
+		}
+	});
+	$('.comments-cell').each(function(){
+		if($(this).text().toLowerCase().indexOf(material_search_value) < 0){
+			$(this).parents('.chalice-entry').hide();
+		}else{
+			$(this).parents('.chalice-entry').show();
 		}
 	});
 

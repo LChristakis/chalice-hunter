@@ -1,10 +1,23 @@
 from flask import Flask, jsonify, render_template, request
+from flask.ext.assets import Environment, Bundle
 from threading import Thread
 from io import StringIO
 import requests
 import csv
 
 app = Flask(__name__)
+assets=Environment(app)
+
+
+css = Bundle(
+    Bundle('assets/surface_styles.scss',
+        filters='scss'),
+    Bundle('custom.css'),
+    filters='cssmin',
+    output='all.css')
+
+assets.register('css_all',css)
+
 
 chalice_list = []
 
@@ -16,8 +29,12 @@ def fetch_chalice_list():
     #reader = csv.reader(StringIO(response.text),delimiter='\t')
     tsv_file = open('Chalice Dungeon Submission Form (Responses) - Form Responses 1.tsv','r')
     reader = csv.reader(tsv_file,delimiter='\t')
+    next(reader)
     for row in reader:
         if row[0] != '':
+            for i in range(4,12):
+                if row[i]=='':
+                    row[i]="None / Unsure"
             chalice_list.append(row)
 
 @app.route("/")
@@ -30,7 +47,4 @@ def query():
 
 if __name__ == "__main__":
     fetch_chalice_list()
-    for row in chalice_list:
-        print(row)
-    print(len(chalice_list))
-    app.run(debug=True)
+    app.run(debug=True,host='0.0.0.0')
