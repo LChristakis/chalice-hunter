@@ -6,13 +6,13 @@
 	</header>
 	<div class="g--10 m--1 container container--wrap--s">
 		<div class="card g--4 g-m--12 g-s--12 g-t--12 nudge--right no-nudge--s no-nudge--t">
-			<input type="text" required placeholder="Chalice" class="search chalice-search"></input>
+			<input type="text" placeholder="Chalice" class="search chalice-search"></input>
 		</div>
 		<div class="card g--4 g-m--12 g-s--12 g-t--12 nudge--right no-nudge--s no-nudge--t">
-			<input type="text" required placeholder="Weapon" class="search weapon-search">
+			<input type="text" placeholder="Weapon" class="search weapon-search">
 		</div>
 		<div class="card g--4 g-m--12 g-s--12 g-t--12">
-			<input type="text" required placeholder="Material" class="search material-search">
+			<input type="text" placeholder="Material" class="search material-search">
 		</div>
 	</div>
 	<div class="g--2 g-m--2 g-s--12 g-t--12 m--5 m-m--5">
@@ -55,8 +55,11 @@
 			</table>
 		</div>	
 	{% endfor %}
-	<p>Hello world</p>
-	
+	<footer class="g--12 no-margin-vertical">
+		<div class="g--10 m--1">
+			Chalice Hunter is made by <a href="http://twitter.com/lChristakis">Luke Christakis</a>. Source code on <a href="https://github.com/LChristakis/chalice-hunter">Github</a>. Data taken from <a href="http://bit.ly/1FFMzNg">Sevy's Google Spreadsheet</a>. Built with <a href="http://flask.pocoo.org/">Flask</a>, <a href="https://jquery.com/">JQuery</a> and <a href="http://iamsurface.com/index.html">Surface CSS</a>.
+		</div>
+	</footer>	
 <script>
 $('.chalice-search').on('input', function(){ 
 	search();
