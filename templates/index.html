@@ -6,13 +6,13 @@
 	</header>
 	<div class="g--10 m--1 container container--wrap--s">
 		<div class="card g--4 g-m--12 g-s--12 g-t--12 nudge--right no-nudge--s no-nudge--t">
-			<input type="text" placeholder="Chalice" class="chalice-search"></input>
+			<input type="text" placeholder="Chalice" required class=" chalice-search"></input>
 		</div>
 		<div class="card g--4 g-m--12 g-s--12 g-t--12 nudge--right no-nudge--s no-nudge--t">
-			<input type="text" placeholder="Weapon" class="weapon-search">
+			<input type="text" placeholder="Weapon" required class=" weapon-search">
 		</div>
 		<div class="card g--4 g-m--12 g-s--12 g-t--12">
-			<input type="text" placeholder="Material" class="material-search">
+			<input type="text" placeholder="Material" required class=" material-search">
 		</div>
 	</div>
 	<div class="g--2 g-m--2 g-s--12 g-t--12 m--5 m-m--5">
@@ -70,6 +70,7 @@ if(isMobile){
 	$('.chalice-search').addClass('mobile');
 	$('.weapon-search').addClass('mobile');
 	$('.material-search').addClass('mobile');
+	$('.reset').addClass('mobile');
 }
 
 $('.chalice-search').on('input', function(){ 
